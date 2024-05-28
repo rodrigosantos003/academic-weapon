@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
 
     [SerializeField] private GameObject projectile;
+    [SerializeField] private Transform projectileSpawnPoint;
     
     void Update()
     {
@@ -37,12 +38,12 @@ public class PlayerController : MonoBehaviour
     
     private IEnumerator Shoot(float cooldown = 0.5f)
     {
-        var playerTransform = transform;
-        var playerPosition = playerTransform.position;
-        var playerRotation = playerTransform.rotation;
-        
-        Instantiate(projectile, playerPosition, playerRotation);
-        
+        Vector3 spawnDirection = projectileSpawnPoint.up;
+
+        Vector3 spawnPosition = projectileSpawnPoint.position + spawnDirection * projectile.transform.localScale.y;
+
+        Instantiate(projectile, spawnPosition, projectileSpawnPoint.rotation);
+
         yield return new WaitForSeconds(cooldown);
     }
 }
