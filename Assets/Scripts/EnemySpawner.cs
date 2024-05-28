@@ -1,26 +1,25 @@
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject objectToSpawn;
-    [SerializeField] private float margin = 20f;
-    [SerializeField] private float spawnSpeed = 3;
-    [SerializeField] private int EnemiesToSpawn = 10;
+    [SerializeField] private GameObject enemy;
+    [SerializeField] private float margin;
+    [SerializeField] private float spawnSpeed;
+    [SerializeField] private int enemiesToSpawn;
+    [SerializeField] private Transform player;
     
 
-    void Start()
+    public void StartSpawning()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 0, spawnSpeed);
+        StartCoroutine(SpawnEnemy(enemy, spawnSpeed));
     }
 
-    private void SpawnEnemy()
+    private IEnumerator SpawnEnemy(GameObject enemy, float interval)
     {
         Camera mainCamera = Camera.main;
-
-        if (mainCamera != null)
+        
+        while (enemiesToSpawn > 0)
         {
             Vector3 cameraBottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane));
             Vector3 cameraTopRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, mainCamera.nearClipPlane));
@@ -56,6 +55,12 @@ public class EnemySpawner : MonoBehaviour
             }
 
             var pos = new Vector2(randomX, randomY);
+
+            Instantiate(enemy, pos, Quaternion.identity);
+
+            enemiesToSpawn--;
+
+            yield return new WaitForSeconds(interval);
         }
     }
 }

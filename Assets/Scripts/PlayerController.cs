@@ -1,13 +1,19 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int speed;
     private bool isMoving;
+
+    [SerializeField] private GameObject projectile;
+    
     void Update()
     {
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) isMoving = true;
+        
+        if (Input.GetKeyDown(KeyCode.Space)) StartCoroutine(Shoot());
     }
 
     private void FixedUpdate()
@@ -27,5 +33,16 @@ public class PlayerController : MonoBehaviour
 
             playerTransform.position += movement;
         }
+    }
+    
+    private IEnumerator Shoot(float cooldown = 0.5f)
+    {
+        var playerTransform = transform;
+        var playerPosition = playerTransform.position;
+        var playerRotation = playerTransform.rotation;
+        
+        Instantiate(projectile, playerPosition, playerRotation);
+        
+        yield return new WaitForSeconds(cooldown);
     }
 }
