@@ -29,6 +29,14 @@ public class ProgressBar : MonoBehaviour
     [SerializeField]
     private TMP_Text _text;
 
+    [SerializeField] private float _textScale;
+    [SerializeField] private float _textRounding;
+
+    public void SetTextScale(float scale)
+    {
+        _textScale = scale;
+    }
+    
     private void Start()
     {
         if (_progressBar.type != Image.Type.Filled)
@@ -59,11 +67,11 @@ public class ProgressBar : MonoBehaviour
                 StopCoroutine(AnimationCoroutine);
             }
             
-            AnimationCoroutine = StartCoroutine(AnimateProgress(progress, speed, ""));
+            AnimationCoroutine = StartCoroutine(AnimateProgress(progress, speed));
         }
     }
     
-    private IEnumerator AnimateProgress(float progress, float speed, string difficulty)
+    private IEnumerator AnimateProgress(float progress, float speed)
     {
         float time = 0;
         float initialProgress = _progressBar.fillAmount;
@@ -77,8 +85,9 @@ public class ProgressBar : MonoBehaviour
             _progressBar.color = _gradient.Evaluate(1 - _progressBar.fillAmount);
             
             _onProgressChange?.Invoke(_progressBar.fillAmount);
-            
-            _text.text = (progress * 20).ToString("F1") + " / 20.0";
+
+            string format = 'F' + _textRounding.ToString();
+            if(_text) _text.text = (progress * _textScale).ToString(format) + " / " + _textScale.ToString(format);
             
             yield return null;
         }

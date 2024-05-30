@@ -8,11 +8,6 @@ using UnityEngine;
 public class ProjectileStats : ScriptableObject
 {
     [SerializeField] private float speed;
-    [SerializeField] private float damage;
-    [SerializeField] private float cooldown;
     
     public float Speed => speed;
-    public float Damage => damage;
-    
-    public float Cooldown => cooldown;
 }

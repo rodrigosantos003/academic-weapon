@@ -300,6 +300,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   _text: {fileID: 1013219603686116495}
+  _textScale: 20
+  _textRounding: 2
 --- !u!222 &3237274268949751044
 CanvasRenderer:
   m_ObjectHideFlags: 0

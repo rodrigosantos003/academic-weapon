@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private int speed;
+    [SerializeField]
+    private PlayerStats _playerStats;
+    
     private bool isMoving;
-
-    [SerializeField] private int maxHealth;
+    
     private int currentHealth;
     
-    [SerializeField] private GameObject projectile;
+    [SerializeField] private ProgressBar healthBar;
+    
     [SerializeField] private Transform projectileSpawnPoint;
     
     private bool canShoot = true;
@@ -19,14 +21,23 @@ public class PlayerController : MonoBehaviour
     
     private void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = _playerStats.MaxHealth;
+        UpdateHealthbarScale();
+        healthBar.SetProgress((float)currentHealth / _playerStats.MaxHealth, 2);
         _camera = Camera.main;
     }
     
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        Debug.Log("Current health: " + currentHealth);
+        currentHealth -= damage * (1 - _playerStats.Defense / 100);
+        healthBar.SetTextScale(_playerStats.MaxHealth);
+        healthBar.SetProgress((float)currentHealth / _playerStats.MaxHealth, 2);
+    }
+
+    public void UpdateHealthbarScale()
+    {
+        healthBar.SetTextScale(_playerStats.MaxHealth);
+        healthBar.SetProgress((float)currentHealth / _playerStats.MaxHealth, 2);
     }
     void Update()
     {
@@ -45,8 +56,8 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = false;
             
-            float xMovement = Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime;
-            float yMovement = Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
+            float xMovement = Input.GetAxisRaw("Horizontal") * _playerStats.Speed * Time.deltaTime;
+            float yMovement = Input.GetAxisRaw("Vertical") * _playerStats.Speed * Time.deltaTime;
             
             Vector3 movement = new Vector3(xMovement, yMovement, 0);
 
@@ -60,8 +71,6 @@ public class PlayerController : MonoBehaviour
     
     private IEnumerator Shoot()
     {
-        var cooldown = projectile.GetComponent<ProjectileController>().GetCooldown();
-        
         Vector3 mousePosition = _camera.ScreenToWorldPoint(Input.mousePosition);
         mousePosition.z = 0;
         
@@ -69,9 +78,9 @@ public class PlayerController : MonoBehaviour
         
         var angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
         
-        Instantiate(projectile, projectileSpawnPoint.position, Quaternion.Euler(0, 0, angle));
+        Instantiate(_playerStats.Projectile, projectileSpawnPoint.position, Quaternion.Euler(0, 0, angle));
 
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(_playerStats.ShootingSpeed);
         
         canShoot = true;
     }

@@ -6,7 +6,13 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     [SerializeField] private ProjectileStats stats;
-
+    private static int damage;
+    
+    public static void SetDamage(int damage)
+    {
+        ProjectileController.damage = damage;
+    }
+    
     void FixedUpdate()
     {
         transform.position += transform.up * (stats.Speed * Time.deltaTime);
@@ -15,7 +21,7 @@ public class ProjectileController : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<EnemyController>().TakeDamage(stats.Damage);
+            other.GetComponent<EnemyController>().TakeDamage(damage);
             Destroy(gameObject);
         }
         
@@ -23,10 +29,5 @@ public class ProjectileController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    
-    public float GetCooldown()
-    {
-        return stats.Cooldown;
     }
 }

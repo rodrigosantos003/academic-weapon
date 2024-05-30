@@ -6,8 +6,8 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private EnemyStats stats;
-    private float maxHealth = 200;
-    private float currentHealth;
+    private int maxHealth = 200;
+    private int currentHealth;
     
     private static GameObject _healthBarPrefab;
     private static Canvas _healthBarCanvas;
@@ -41,20 +41,22 @@ public class EnemyController : MonoBehaviour
     
     private void Start()
     {
-        maxHealth = 100;
         currentHealth = maxHealth;
         SpawnHealthBar();
     }
     
-    public void TakeDamage(float damage)
+    public bool TakeDamage(int damage)
     {
-        currentHealth -= damage * (1 - stats.Defense / 100);
-        
-        if (currentHealth <= 0){
-           Die();
+        currentHealth -= (int)(damage * (1 - (float)stats.Defense / 100));
+        _healthBar.SetProgress((float)currentHealth / maxHealth, 2);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+            return true;
         }
-        
-        _healthBar.SetProgress(currentHealth / maxHealth, 2);
+
+        return false;
     }
 
     public void Die()
@@ -81,9 +83,8 @@ public class EnemyController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage((int)currentHealth);
-            Destroy(gameObject);
-            Destroy(_healthBarObject);
+            other.gameObject.GetComponent<PlayerController>().TakeDamage(currentHealth);
+            Die();
         }
     }
 }
