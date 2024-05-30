@@ -1,0 +1,21 @@
+.header {
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    align-self: center;
+    top: 19px;
+    background-color: rgba(95, 95, 95, 0);
+    background-image: url("project://database/Assets/Sprites/UI/UI_Flat_Banner_01_Upward.png?fileID=21300000&guid=4bd8b08a7ccc6744cbb5a01a06dc13d3&type=3#UI_Flat_Banner_01_Upward");
+    -unity-text-align: upper-center;
+}
+
+.button {
+    font-size: 30px;
+    width: 500px;
+    height: 100px;
+    align-self: center;
+    color: rgb(255, 255, 255);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgba(0, 0, 0, 0);
+    background-image: url("project://database/Assets/Sprites/UI/UI_Flat_Slot_01_Available.png?fileID=21300000&guid=d2ee8f22f80deef4191dbe27717043d3&type=3#UI_Flat_Slot_01_Available");
+}
