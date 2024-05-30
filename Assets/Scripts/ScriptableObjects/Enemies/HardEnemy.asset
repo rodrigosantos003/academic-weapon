@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: HardEnemy
   m_EditorClassIdentifier: 
   speed: 2
-  defense: 50
+  defense: 75

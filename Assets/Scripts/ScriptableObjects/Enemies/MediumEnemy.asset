@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c233fd43905574384855162073f809, type: 3}
   m_Name: MediumEnemy
   m_EditorClassIdentifier: 
-  speed: 4
-  defense: 25
+  speed: 3
+  defense: 50
