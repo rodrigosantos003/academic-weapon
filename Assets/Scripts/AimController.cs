@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AimController : MonoBehaviour
@@ -18,8 +16,6 @@ public class AimController : MonoBehaviour
 
         transform.position = targetPosition;
 
-        Vector3 lookDirection = mousePosition - transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.up = direction;
     }
 }

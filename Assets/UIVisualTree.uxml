@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="Container" style="flex-grow: 1;">
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="WaveLabel" style="right: auto; -unity-text-align: upper-center; font-size: 30px; -unity-font-style: bold; -unity-font: initial; -unity-text-outline-color: rgba(255, 255, 255, 0); color: rgb(255, 255, 255);" />
+        <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="TimerLabel" style="-unity-font-style: bold; -unity-text-align: upper-center; color: rgb(255, 255, 255); font-size: 18px; text-overflow: clip;" />
+    </ui:VisualElement>
+</ui:UXML>

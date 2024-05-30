@@ -152,11 +152,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351504796f842c449918f079f6b03af8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 8474742953677680991, guid: ab560a7868f735044b1984d88108602a, type: 3}
   margin: 5
-  spawnSpeed: 3
-  enemiesToSpawn: 10
   player: {fileID: 835848612}
+  interval: 2
 --- !u!4 &220066186
 Transform:
   m_ObjectHideFlags: 0
@@ -167,6 +165,54 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.048256006, y: -1.7792726, z: 0.038386673}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &369869579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 369869581}
+  - component: {fileID: 369869580}
+  m_Layer: 5
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &369869580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369869579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 4b50034c15862fb4bba4d98ef733d5dd, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 51da662ae9b9d634689a916320fb68c0, type: 3}
+  m_SortingOrder: 0
+--- !u!4 &369869581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 369869579}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -459,7 +505,7 @@ Transform:
   m_GameObject: {fileID: 715061870}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.136, z: 0}
+  m_LocalPosition: {x: 0, y: 0.85, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -530,7 +576,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 835848610}
-  distance: 1
+  distance: 0.85
 --- !u!1 &835848610
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +592,7 @@ GameObject:
   - component: {fileID: 835848615}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -632,6 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  maxHealth: 100
   projectile: {fileID: 8080376501431661697, guid: bc8325734e79f9146af9f8ff0b221da5, type: 3}
   projectileSpawnPoint: {fileID: 715061871}
 --- !u!61 &835848614
@@ -693,7 +740,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0
+  m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -1129,7 +1176,25 @@ MonoBehaviour:
   healthBarCanvas: {fileID: 1147363353}
   healthBarPrefab: {fileID: 8469135892766060946, guid: 76fc9b68f087068479b431432cf9f9a2, type: 3}
   player: {fileID: 835848610}
-  EnemySpawner: {fileID: 220066185}
+  enemySpawner: {fileID: 220066185}
+  uiDocument: {fileID: 369869580}
+  spawningChances:
+    firstYear:
+      easyChance: 80
+      mediumChance: 20
+      hardChance: 0
+    secondYear:
+      easyChance: 60
+      mediumChance: 30
+      hardChance: 10
+    thirdYear:
+      easyChance: 30
+      mediumChance: 40
+      hardChance: 30
+    enemyList:
+      easyEnemy: {fileID: 8474742953677680991, guid: ab560a7868f735044b1984d88108602a, type: 3}
+      mediumEnemy: {fileID: 8474742953677680991, guid: a449210f74a87094a91cc581519e0765, type: 3}
+      hardEnemy: {fileID: 8474742953677680991, guid: 8d5b70f792f3844488c32c872b5a212e, type: 3}
 --- !u!4 &1731790895
 Transform:
   m_ObjectHideFlags: 0
@@ -1289,3 +1354,4 @@ SceneRoots:
   - {fileID: 1815019041}
   - {fileID: 1058212639}
   - {fileID: 375054659}
+  - {fileID: 369869581}

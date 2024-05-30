@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,6 +25,9 @@ public class ProgressBar : MonoBehaviour
     private UnityEvent _onProgressComplete;
     
     private Coroutine AnimationCoroutine;
+    
+    [SerializeField]
+    private TMP_Text _text;
 
     private void Start()
     {
@@ -34,7 +38,7 @@ public class ProgressBar : MonoBehaviour
         }
     }
 
-    public void SetProgress(float progress)
+    public void SetProgress(float progress, string text)
     {
         SetProgress(progress, _fillSpeed);
     }
@@ -55,11 +59,11 @@ public class ProgressBar : MonoBehaviour
                 StopCoroutine(AnimationCoroutine);
             }
             
-            AnimationCoroutine = StartCoroutine(AnimateProgress(progress, speed));
+            AnimationCoroutine = StartCoroutine(AnimateProgress(progress, speed, ""));
         }
     }
     
-    private IEnumerator AnimateProgress(float progress, float speed)
+    private IEnumerator AnimateProgress(float progress, float speed, string difficulty)
     {
         float time = 0;
         float initialProgress = _progressBar.fillAmount;
@@ -73,6 +77,9 @@ public class ProgressBar : MonoBehaviour
             _progressBar.color = _gradient.Evaluate(1 - _progressBar.fillAmount);
             
             _onProgressChange?.Invoke(_progressBar.fillAmount);
+            
+            _text.text = (progress * 20).ToString("F1") + " / 20.0";
+            
             yield return null;
         }
         

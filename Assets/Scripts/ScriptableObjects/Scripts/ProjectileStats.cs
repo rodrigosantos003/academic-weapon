@@ -1,0 +1,18 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "ProjectileStats", menuName = "ScriptableObjects/ProjectileStats")]
+public class ProjectileStats : ScriptableObject
+{
+    [SerializeField] private float speed;
+    [SerializeField] private float damage;
+    [SerializeField] private float cooldown;
+    
+    public float Speed => speed;
+    public float Damage => damage;
+    
+    public float Cooldown => cooldown;
+}

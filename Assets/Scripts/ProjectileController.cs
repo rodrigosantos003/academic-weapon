@@ -19,13 +19,14 @@ public class ProjectileController : MonoBehaviour
             Destroy(gameObject);
         }
         
-    }
-    
-    private void OnCollisionEnter2D(Collision2D other)
-    {
         if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
+    }
+    
+    public float GetCooldown()
+    {
+        return stats.Cooldown;
     }
 }
