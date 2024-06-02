@@ -35,6 +35,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIDocument upgradeCardsRoot;
     private VisualElement upgradeCardsContainer;
     
+    [SerializeField] private GameObject coffee;
+    
+    [SerializeField] private UIDocumentManager uiDocumentManager;
+    
+    [SerializeField] private SoundManager soundManager;
+    
+    public void SpawnCoffee(Vector3 position)
+    {
+        Instantiate(coffee, position, Quaternion.identity);
+    }
+    
     void Start()
     {
         waveLabel = uiDocument.rootVisualElement.Q<Label>("WaveLabel");
@@ -42,7 +53,6 @@ public class GameManager : MonoBehaviour
         
         year = 1;
         
-        upgradeCardsRoot.gameObject.SetActive(true);
         upgradeCardsContainer = upgradeCardsRoot.rootVisualElement.Q<VisualElement>("UpgradeCardsContainer");
         
         upgradeCardsRoot.rootVisualElement.style.display = DisplayStyle.None;
@@ -57,8 +67,9 @@ public class GameManager : MonoBehaviour
         EnemyController.SetHealthBarCanvas(healthBarCanvas);
         EnemyController.SetHealthBarPrefab(healthBarPrefab);
         EnemyController.SetPlayer(player);
+        EnemyController.SetGameManager(this);
+        EnemyController.SetSoundManager(soundManager);
         EnemySpawner.SetSpawningChances(spawningChances);
-        ProjectileController.SetDamage(playerStats.Attack);
     }
 
     void UpdateWaveInfo()
@@ -80,6 +91,21 @@ public class GameManager : MonoBehaviour
     
     private IEnumerator GameLogic()
     {
+        pauseTime = pauseDuration;
+        enemySpawner.StopSpawning();
+        enemySpawner.KillEnemies();
+        
+        //Timer da pausa entre rondas
+        while (pauseTime > 0)
+        {
+            timerLabel.text = "Ronda começa em: " + pauseTime + "s";
+            
+            yield return new WaitForSeconds(1);
+
+            pauseTime--;
+        }
+        
+        soundManager.PlaySchoolBell();
         enemySpawner.StartSpawning(year);
         
         //Timer da ronda
@@ -91,23 +117,18 @@ public class GameManager : MonoBehaviour
             
             waveTime--;
         }
-
-        enemySpawner.StopSpawning();
-        enemySpawner.KillEnemies();
-        ShowUpgrades();
-        pauseTime = pauseDuration;
+        
+        if (year == 3 && semester == 2)
+        {
+            uiDocumentManager.GameOver(true);
+            StopAllCoroutines();
+            yield break;
+        }
+        
         UpdateWaveInfo();
         
-        //Timer da pausa entre rondas
-        while (pauseTime > 0)
-        {
-            timerLabel.text = "Próxima ronda em: " + pauseTime + "s";
-            
-            yield return new WaitForSeconds(1);
-
-            pauseTime--;
-        }
-
+        ShowUpgrades();
+        
         StartCoroutine(GameLogic());
     }
 
@@ -165,12 +186,6 @@ public class GameManager : MonoBehaviour
                 case UpgradeType.Damage:
                     float newDamage = playerStats.Attack * (1 + upgrade.UpgradeValue / 100);
                     playerStats.Attack = (int)newDamage;
-                    ProjectileController.SetDamage(playerStats.Attack);
-                    break;
-                
-                case UpgradeType.Defense:
-                    float newDefense = playerStats.Defense * (1 + upgrade.UpgradeValue / 100);
-                    playerStats.Defense = (int)newDefense;
                     break;
                 
                 case UpgradeType.Health:

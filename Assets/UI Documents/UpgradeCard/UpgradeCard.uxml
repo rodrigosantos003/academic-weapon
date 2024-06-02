@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Documents/UpgradeScreen/UpgradeScreenStyleSheet.uss?fileID=7433441132597879392&amp;guid=734d07f0e02de374f9e08337c613f4e9&amp;type=3#UpgradeScreenStyleSheet" />
+    <ui:VisualElement name="UpgradeCard" class="upgradeCard">
+        <ui:Label tabindex="-1" text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeImage" class="upgradeImage" style="background-image: none;" />
+        <ui:Label tabindex="-1" text="TITULO DO UPGRADE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeName" class="upgradeTitle" />
+        <ui:Label tabindex="-1" text="DESCRICAO DO UPGRADE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeDescription" class="upgradeDescription" />
+    </ui:VisualElement>
+</ui:UXML>

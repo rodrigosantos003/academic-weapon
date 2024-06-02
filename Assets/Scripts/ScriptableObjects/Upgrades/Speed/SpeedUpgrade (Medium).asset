@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816f4ba42ba75c04f9e7ed4ead275644, type: 3}
   m_Name: SpeedUpgrade (Medium)
   m_EditorClassIdentifier: 
-  upgradeName: Speed
+  upgradeName: Medium Speed
   upgradeDescription: 'Speed: +40%'
   upgradeImage: {fileID: 2800000, guid: 9fa6e1f3f0aedc2458aa6c7a7af8bcd3, type: 3}
   upgradeChance: 10

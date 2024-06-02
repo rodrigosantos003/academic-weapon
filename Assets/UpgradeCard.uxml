@@ -1,7 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="UpgradeCard" class="upgradeCard">
-        <ui:Label tabindex="-1" text="&#10;" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeImage" class="upgradeImage" style="background-image: none;" />
-        <ui:Label tabindex="-1" text="TITULO DO UPGRADE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeName" class="upgradeTitle" />
-        <ui:Label tabindex="-1" text="DESCRICAO DO UPGRADE" parse-escape-sequences="true" display-tooltip-when-elided="true" name="UpgradeDescription" class="upgradeDescription" />
-    </ui:VisualElement>
-</ui:UXML>

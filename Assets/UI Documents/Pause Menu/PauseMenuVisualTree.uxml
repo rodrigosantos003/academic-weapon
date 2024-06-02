@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Documents/Pause%20Menu/PauseMenuStyles.uss?fileID=7433441132597879392&amp;guid=c90a51a0b1460f04d81ac00c38850578&amp;type=3#PauseMenuStyles" />
+    <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); background-image: url(&quot;project://database/Assets/Sprites/pauseMenuBackground.png?fileID=2800000&amp;guid=ad4e149acefd8304087faf0118ddedae&amp;type=3#pauseMenuBackground&quot;); margin-top: 4%; margin-right: 20%; margin-bottom: 4%; margin-left: 20%; align-items: center; flex-basis: 0;">
+        <ui:Button text="Resume Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ResumeButton" class="button" style="width: 40%; height: 10%; left: 0; white-space: nowrap; top: 27%; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
+        <ui:Button text="Restart Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="RestartButton" class="button" style="width: 40%; height: 10%; left: 0; white-space: nowrap; top: 37%;" />
+        <ui:Button text="Quit Game" parse-escape-sequences="true" display-tooltip-when-elided="true" name="QuitButton" class="button" style="width: 40%; height: 10%; left: 0; white-space: nowrap; top: 47%;" />
+    </ui:VisualElement>
+</ui:UXML>

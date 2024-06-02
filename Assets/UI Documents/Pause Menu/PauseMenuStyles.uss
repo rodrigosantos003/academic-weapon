@@ -1,0 +1,14 @@
+Button {
+    font-size: 50px;
+    -unity-font-style: bold;
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(255, 255, 255, 0);
+    border-right-color: rgba(255, 255, 255, 0);
+    border-top-color: rgba(255, 255, 255, 0);
+    border-bottom-color: rgba(255, 255, 255, 0);
+}
+
+Button:hover {
+    scale: 1.3 1.3;
+}

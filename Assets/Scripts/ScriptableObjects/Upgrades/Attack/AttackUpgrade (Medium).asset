@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816f4ba42ba75c04f9e7ed4ead275644, type: 3}
   m_Name: AttackUpgrade (Medium)
   m_EditorClassIdentifier: 
-  upgradeName: Attack 2
-  upgradeDescription: 'Base Attack: +40%'
+  upgradeName: Medium Attack
+  upgradeDescription: 'Attack Damage: +40%'
   upgradeImage: {fileID: 2800000, guid: 382b87d4be45b31489ea5531e7cbb827, type: 3}
   upgradeChance: 10
   upgradeType: 1

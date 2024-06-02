@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816f4ba42ba75c04f9e7ed4ead275644, type: 3}
   m_Name: HealthUpgrade (Small)
   m_EditorClassIdentifier: 
-  upgradeName: Health
-  upgradeDescription: 'Max Health: +60%'
+  upgradeName: Small Health
+  upgradeDescription: 'Max Health: +20%'
   upgradeImage: {fileID: 2800000, guid: 3bf2c34b1ea73e5408951abfb5f0136d, type: 3}
-  upgradeChance: 5
+  upgradeChance: 20
   upgradeType: 0
-  upgradeValue: 60
+  upgradeValue: 20

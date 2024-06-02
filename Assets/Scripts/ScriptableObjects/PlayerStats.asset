@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: PlayerStats
   m_EditorClassIdentifier: 
   defaultSpeed: 5
-  speed: 7
+  speed: 5
   defaultMaxHealth: 1000
-  maxHealth: 1200
+  maxHealth: 1000
   projectile: {fileID: 8080376501431661697, guid: bc8325734e79f9146af9f8ff0b221da5, type: 3}
   defaultAttack: 80
-  attack: 112
-  defaultShootingSpeed: 1.5
-  shootingSpeed: 1.25
+  attack: 80
+  defaultShootingSpeed: 1
+  shootingSpeed: 1
   defaultDefense: 0
   defense: 0

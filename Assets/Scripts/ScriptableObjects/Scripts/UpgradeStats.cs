@@ -6,7 +6,6 @@ public enum UpgradeType
     Health,
     Damage,
     ShootingSpeed,
-    Defense,
     Speed
 }
 

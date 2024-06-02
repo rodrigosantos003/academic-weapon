@@ -1,4 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/UpgradeStyleSheet.uss?fileID=7433441132597879392&amp;guid=734d07f0e02de374f9e08337c613f4e9&amp;type=3#UpgradeStyleSheet" />
-    <ui:VisualElement name="UpgradeCardsContainer" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/chalkboard.jpg?fileID=2800000&amp;guid=6cb7826f596d1bf4c90cfed28481f62e&amp;type=3#chalkboard&quot;); flex-direction: row; padding-top: 5%; padding-right: 5%; padding-bottom: 5%; padding-left: 5%; justify-content: space-around; align-items: center;" />
-</ui:UXML>

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816f4ba42ba75c04f9e7ed4ead275644, type: 3}
   m_Name: AttackUpgrade (Big)
   m_EditorClassIdentifier: 
-  upgradeName: Attack 1
-  upgradeDescription: 'Base Attack: +20%'
+  upgradeName: Big Attack
+  upgradeDescription: 'Attack Damage: +60%'
   upgradeImage: {fileID: 2800000, guid: 382b87d4be45b31489ea5531e7cbb827, type: 3}
-  upgradeChance: 20
+  upgradeChance: 5
   upgradeType: 1
-  upgradeValue: 20
+  upgradeValue: 60

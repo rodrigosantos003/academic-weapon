@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 816f4ba42ba75c04f9e7ed4ead275644, type: 3}
   m_Name: ShootingSpeedUpgrade (Small)
   m_EditorClassIdentifier: 
-  upgradeName: Attack Speed 3
-  upgradeDescription: 'Attack Speed: +60%'
+  upgradeName: Small Attack Speed
+  upgradeDescription: 'Attack Speed: +20%'
   upgradeImage: {fileID: 2800000, guid: 049e53c3195b28e47b78b90df69e365f, type: 3}
-  upgradeChance: 5
+  upgradeChance: 20
   upgradeType: 2
-  upgradeValue: 60
+  upgradeValue: 20

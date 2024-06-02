@@ -17,9 +17,6 @@ public class PlayerStats : ScriptableObject
     
     [SerializeField] private float defaultShootingSpeed;
     [SerializeField] private float shootingSpeed;
-    
-    [SerializeField] private int defaultDefense;
-    [SerializeField] private int defense;
 
     void OnEnable()
     {
@@ -27,7 +24,6 @@ public class PlayerStats : ScriptableObject
         maxHealth = defaultMaxHealth;
         attack = defaultAttack;
         shootingSpeed = defaultShootingSpeed;
-        defense = defaultDefense;
     }
     
     public int Speed
@@ -58,11 +54,5 @@ public class PlayerStats : ScriptableObject
     {
         get => shootingSpeed;
         set => shootingSpeed = value;
-    }
-    
-    public int Defense
-    {
-        get => defense;
-        set => defense = value;
     }
 }

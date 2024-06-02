@@ -91,7 +91,7 @@ public class EnemySpawner : MonoBehaviour
             float minY = cameraBottomLeft.y - margin;
             float maxY = cameraTopRight.y + margin;
 
-            int side = Random.Range(0, 4);
+            int side = Random.Range(0, 3);
 
             float randomX = 0;
             float randomY = 0;
@@ -109,10 +109,6 @@ public class EnemySpawner : MonoBehaviour
                 case 2: // Baixo
                     randomX = Random.Range(minX, maxX);
                     randomY = Random.Range(minY, cameraBottomLeft.y);
-                    break;
-                case 3: // Cima
-                    randomX = Random.Range(minX, maxX);
-                    randomY = Random.Range(cameraTopRight.y, maxY);
                     break;
             }
 
