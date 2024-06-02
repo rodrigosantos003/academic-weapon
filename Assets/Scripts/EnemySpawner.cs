@@ -21,6 +21,8 @@ public class YearSpawningChances
     public float easyChance;
     public float mediumChance;
     public float hardChance;
+
+    public float spawnSpeed;
 }
 
 //todas as informações do spawn
@@ -43,7 +45,10 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float interval;
     static EnemySpawningChances chances;
-    
+
+    [SerializeField] private GameObject rightWall;
+    [SerializeField] private GameObject leftWall;
+    [SerializeField] private GameObject downWall;
     
     
     public static void SetSpawningChances(EnemySpawningChances EnemySpawningChances)
@@ -79,40 +84,27 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemy(YearSpawningChances yearChances)
     {
-        Camera mainCamera = Camera.main;
-        
         while (true)
         {
-            Vector3 cameraBottomLeft = mainCamera.ViewportToWorldPoint(new Vector3(0, 0, mainCamera.nearClipPlane));
-            Vector3 cameraTopRight = mainCamera.ViewportToWorldPoint(new Vector3(1, 1, mainCamera.nearClipPlane));
-
-            float minX = cameraBottomLeft.x - margin;
-            float maxX = cameraTopRight.x + margin;
-            float minY = cameraBottomLeft.y - margin;
-            float maxY = cameraTopRight.y + margin;
-
+            //escolhe um de 3 lados para spawnar
             int side = Random.Range(0, 3);
-
-            float randomX = 0;
-            float randomY = 0;
-
+            
+            Vector3 pos = Vector3.zero;
+            
             switch (side)
             {
-                case 0: // Esquerda
-                    randomX = Random.Range(minX, cameraBottomLeft.x);
-                    randomY = Random.Range(minY, maxY);
+                case 0: //esquerda
+                    pos = new Vector3(leftWall.transform.position.x - margin, Random.Range(downWall.transform.position.y, leftWall.transform.position.y), 0);
                     break;
-                case 1: // Direita
-                    randomX = Random.Range(cameraTopRight.x, maxX);
-                    randomY = Random.Range(minY, maxY);
+                
+                case 1: //direita
+                    pos = new Vector3(rightWall.transform.position.x + margin, Random.Range(downWall.transform.position.y, rightWall.transform.position.y), 0);
                     break;
-                case 2: // Baixo
-                    randomX = Random.Range(minX, maxX);
-                    randomY = Random.Range(minY, cameraBottomLeft.y);
+                
+                case 2: //baixo
+                    pos = new Vector3(Random.Range(leftWall.transform.position.x, rightWall.transform.position.x), downWall.transform.position.y - margin, 0);
                     break;
             }
-
-            var pos = new Vector2(randomX, randomY);
             
             GameObject enemy = null;
             float totalChances = yearChances.easyChance + yearChances.mediumChance + yearChances.hardChance;
@@ -134,7 +126,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject instance = Instantiate(enemy, pos, Quaternion.identity);
             
             enemies.Add(instance);
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSeconds(yearChances.spawnSpeed);
         }
     }
 

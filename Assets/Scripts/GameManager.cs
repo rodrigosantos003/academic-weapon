@@ -55,7 +55,8 @@ public class GameManager : MonoBehaviour
         
         upgradeCardsContainer = upgradeCardsRoot.rootVisualElement.Q<VisualElement>("UpgradeCardsContainer");
         
-        upgradeCardsRoot.rootVisualElement.style.display = DisplayStyle.None;
+        upgradeCardsContainer.RemoveFromClassList("visible");
+        upgradeCardsContainer.AddToClassList("hidden");
         
         SetVariables();
         UpdateWaveInfo();
@@ -135,7 +136,9 @@ public class GameManager : MonoBehaviour
     private void ShowUpgrades()
     {
         Time.timeScale = 0;
-        upgradeCardsRoot.rootVisualElement.style.display = DisplayStyle.Flex;
+        
+        upgradeCardsContainer.RemoveFromClassList("hidden");
+        upgradeCardsContainer.AddToClassList("visible");
         
         upgradeCardsContainer.Clear();
         
@@ -181,6 +184,9 @@ public class GameManager : MonoBehaviour
     {
         return evt =>
         {
+            upgradeCardsContainer.RemoveFromClassList("visible");
+            upgradeCardsContainer.AddToClassList("hidden");
+            
             switch (upgrade.UpgradeType)
             {
                 case UpgradeType.Damage:
@@ -206,7 +212,6 @@ public class GameManager : MonoBehaviour
             }
             
             Time.timeScale = 1;
-            upgradeCardsRoot.rootVisualElement.style.display = DisplayStyle.None;
         };
     }
 }

@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) isMoving = true;
         
-        if (Input.GetKey(KeyCode.Space) && _canShoot)
+        if (Input.GetKey(KeyCode.Space) && _canShoot && Time.timeScale != 0)
         {
             _canShoot = false;
             StartCoroutine(Shoot());

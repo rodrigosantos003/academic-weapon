@@ -45,3 +45,15 @@
     width: 150px;
     bottom: 40px;
 }
+
+.hidden {
+    opacity: 0;
+    scale: 0.95 0.95;
+    transition-duration: 0.35s;
+}
+
+.visible {
+    opacity: 1;
+    scale: 1 1;
+    transition-duration: 0.35s;
+}
